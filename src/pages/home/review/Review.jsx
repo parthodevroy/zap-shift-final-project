@@ -10,7 +10,7 @@ import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 const Review = ({reviwsload}) => {
 
   const data=use(reviwsload)
-  // console.log(data);
+  
   
     
     
@@ -23,7 +23,7 @@ const Review = ({reviwsload}) => {
         centeredSlides={true}
         slidesPerView={3}
         autoplay={{
-          delay: 3000,
+          delay: 1500,
           disableOnInteraction: false,
         }}
        

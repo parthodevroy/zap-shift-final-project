@@ -15,6 +15,8 @@ import PaymentCancel from "../pages/PaymentCanchel/PaymentCancel";
 import PaymentHistory from "../pages/dashboard/PaymentHistory/PaymentHistory";
 import Rider from "../pages/Rider/Rider";
 import Approval from "../pages/dashboard/RiderApproval/Approval";
+import UserManagement from "../pages/dashboard/UserManagement/UserManagement";
+import AdminPrivateRoute from "./AdminPrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -72,6 +74,7 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        index:true,
         path: "my-parcels",
         Component: MyDashboard
       },
@@ -94,6 +97,13 @@ export const router = createBrowserRouter([
       {
         path:"rider-approval",
         Component:Approval
+        
+        // element:<AdminPrivateRoute><Approval></Approval></AdminPrivateRoute>
+      },
+      {
+        path:"user-management",
+        // element:<AdminPrivateRoute><UserManagement></UserManagement></AdminPrivateRoute>
+        Component:UserManagement
       }
     ]
   }

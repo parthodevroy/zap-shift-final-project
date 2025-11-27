@@ -14,7 +14,7 @@ const Approval = () => {
             return res.data
         }
     })
-    console.log(riders);
+    // console.log(riders);
 
     const updatedStatus = (rider, status) => {
         const updateInfo = { status: status, email: rider.EmailAddress }

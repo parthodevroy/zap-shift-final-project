@@ -23,14 +23,14 @@ const MyDashboard = () => {
     if (isLoading) {
         return (
             <div className="flex justify-center items-center h-full min-h-[500px]">
-                {/* Tailwind CSS/DaisyUI-এর লোডিং স্পিনার */}
+             
                 <span className="loading loading-spinner loading-lg text-primary"></span>
                 <p className='ml-2 text-xl font-medium'>Loading parcels...</p>
             </div>
         );
     }
 
-    // যদি ডেটা লোড হয় কিন্তু কোনো পার্সেল না থাকে
+    
     if (parcels.length === 0) {
         return (
             <div className="flex justify-center items-center h-full min-h-[500px] text-center">
@@ -40,7 +40,6 @@ const MyDashboard = () => {
     }
 
     const handelDelete = (id) => {
-    // 1. Show confirmation using SweetAlert (Recommended practice for deletion)
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -51,7 +50,6 @@ const MyDashboard = () => {
         confirmButtonText: "Yes, delete it!"
     }).then((result) => {
         if (result.isConfirmed) {
-            // 2. Send DELETE request to the server
             axiosSecure.delete(`/parcels/${id}`) 
                 .then(res => {
                     if (res.data.deletedCount > 0) {
@@ -66,7 +64,6 @@ const MyDashboard = () => {
                 })
                 .catch(error => {
                     console.error("Delete Error:", error);
-                    // Handle error here (e.g., toast.error)
                 });
         }
     });

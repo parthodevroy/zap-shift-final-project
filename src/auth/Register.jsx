@@ -14,6 +14,7 @@ const Register = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors }
     } = useForm();
 
@@ -25,13 +26,13 @@ const Register = () => {
       
       console.log(result);
       
-      // File upload করতে FormData বানানো
+      
       const formData = new FormData();
       formData.append("image", photoFile);
 
       const image_api_url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_bb_key}`;
 
-      // Upload to imgbb
+      
       axios.post(image_api_url, formData)
         .then(res => {
           const imageUrl = res.data.data.url; 
@@ -48,6 +49,7 @@ const Register = () => {
           .then(result=>{
             if (result.data.insertedId) {
                 console.log("user crearted database");
+                reset()
                 
                 
             }
@@ -59,7 +61,7 @@ const Register = () => {
             photoURL: imageUrl 
           };
 
-          // Update Firebase Profile
+         
           updateUser(updateData)
             .then(() => {
               console.log("Profile updated successfully!");
