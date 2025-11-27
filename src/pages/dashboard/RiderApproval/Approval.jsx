@@ -1,10 +1,11 @@
-import React from 'react';
+
 
 import useAxios from '../../../hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 
 const Approval = () => {
+    
 
     const axiosSecure = useAxios()
     const { data: riders = [], refetch } = useQuery({
@@ -47,6 +48,8 @@ const Approval = () => {
     return (
         <div>
 
+          
+
 
             <div className="overflow-x-auto">
                 <table className="table">
@@ -58,6 +61,7 @@ const Approval = () => {
                             <th>Email</th>
                             <th>District </th>
                             <th>Status</th>
+                            <th>Work Status</th>
 
                             <th>Action</th>
                         </tr>
@@ -83,6 +87,7 @@ const Approval = () => {
                                             {rider.status}
                                         </span>
                                     </td>
+                                     <td>{rider.workStatus}</td>
 
                                     <td>
                                         <button

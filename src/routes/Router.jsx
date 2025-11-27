@@ -17,6 +17,7 @@ import Rider from "../pages/Rider/Rider";
 import Approval from "../pages/dashboard/RiderApproval/Approval";
 import UserManagement from "../pages/dashboard/UserManagement/UserManagement";
 import AdminPrivateRoute from "./AdminPrivateRoute";
+import AssignRider from "../pages/dashboard/AssignRider/AssignRider";
 
 
 export const router = createBrowserRouter([
@@ -96,14 +97,16 @@ export const router = createBrowserRouter([
       },
       {
         path:"rider-approval",
-        Component:Approval
-        
-        // element:<AdminPrivateRoute><Approval></Approval></AdminPrivateRoute>
+        element:<AdminPrivateRoute><Approval></Approval></AdminPrivateRoute>
+      },
+      {
+        path:"assign-rider",
+        element:<AdminPrivateRoute><AssignRider></AssignRider></AdminPrivateRoute>
       },
       {
         path:"user-management",
-        // element:<AdminPrivateRoute><UserManagement></UserManagement></AdminPrivateRoute>
-        Component:UserManagement
+       element:<AdminPrivateRoute><UserManagement></UserManagement></AdminPrivateRoute>
+    
       }
     ]
   }

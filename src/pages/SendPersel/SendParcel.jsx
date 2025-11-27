@@ -106,7 +106,7 @@ const SendParcel = () => {
   };
     
     return (
-        <div className="max-w-5xl h-auto bg-amber-50 p-4 mx-auto">
+        <div className="max-w-5xl h-auto p-4 mx-auto">
       <h3 className="text-3xl font-bold">Send A Parcel</h3>
       <p>Enter your parcel details</p>
 

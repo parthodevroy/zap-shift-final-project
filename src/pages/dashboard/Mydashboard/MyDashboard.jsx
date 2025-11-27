@@ -82,6 +82,7 @@ const MyDashboard = () => {
         <th>Name</th>
         <th>Cost</th>
         <th>Payment</th>
+        <th>Traking Id</th>
         <th>Delevary Status</th>
         <th>Action</th>
       </tr>
@@ -103,7 +104,8 @@ const MyDashboard = () => {
           <button className='btn btn-primary' type="button">Pay</button>
           </Link>
           }</td>
-        <td>pending</td>
+        <td>{p.trackingId}</td>
+        <td className='text-yellow-300'>{p.deliveryStatus}</td>
         <td>
 
           <button className="btn">

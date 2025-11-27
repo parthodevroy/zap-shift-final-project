@@ -4,6 +4,7 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { RiSecurePaymentFill } from "react-icons/ri";
 import { FaUser } from 'react-icons/fa6';
 import useRole from '../hooks/useRole';
+import { SiRider } from "react-icons/si";
 
 
 const DashBoard = () => {
@@ -41,6 +42,7 @@ const DashBoard = () => {
            
 
             {/* my parcels */}
+            <Link to={"my-parcels"}>
             <li>
               <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My-Parcels">
                 {/* Settings icon */}
@@ -49,6 +51,7 @@ const DashBoard = () => {
                 <span className="is-drawer-close:hidden">My Parcels</span>
               </button>
             </li>
+            </Link>
 
             <li>
               <Link to={"payment-history"}>
@@ -71,6 +74,16 @@ const DashBoard = () => {
 
                   <FaUser />
                   <span className="is-drawer-close:hidden">User Management</span>
+                </button>
+              </Link>
+            </li>
+               <li>
+              <Link to={"assign-rider"}>
+                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="assign rider">
+
+
+                  <SiRider/>
+                  <span className="is-drawer-close:hidden">Assign Rider</span>
                 </button>
               </Link>
             </li>
