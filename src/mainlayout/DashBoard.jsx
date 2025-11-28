@@ -8,7 +8,16 @@ import { SiRider } from "react-icons/si";
 
 
 const DashBoard = () => {
-  const {role}=useRole()
+  const {role,isLoading}=useRole()
+   if (isLoading) {
+    return (
+      <div className="text-center p-10 text-xl font-semibold">
+        Loading Dashboard...
+      </div>
+    );
+  }
+  console.log(role);
+  
   return (
     <div className="drawer max-w-6xl mx-auto lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -63,9 +72,26 @@ const DashBoard = () => {
                 </button>
               </Link>
             </li>
+            {/* only rider see this page */}
+            {
+              role === "rider" &&<>
+              
+              </>
+            }
             {/* rider appproval section and admin show section  */}
+            {/* only admin can see this section */}
              {
               role ==="admin" && <>
+               <li>
+              <Link to={"assign-delivery"}>
+                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assign-rider">
+
+
+                  <FaUser />
+                  <span className="is-drawer-close:hidden">Assign Delivery</span>
+                </button>
+              </Link>
+            </li>
 
                <li>
               <Link to={"user-management"}>

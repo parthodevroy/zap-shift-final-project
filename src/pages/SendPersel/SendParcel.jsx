@@ -3,8 +3,6 @@ import { useForm, useWatch } from 'react-hook-form';
 import { useLoaderData, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
-
-import axios from 'axios';
 import useAxios from '../../hooks/useAxios';
 import useAuth from '../../hooks/useAuth';
 
@@ -106,7 +104,7 @@ const SendParcel = () => {
   };
     
     return (
-        <div className="max-w-5xl h-auto p-4 mx-auto">
+        <div className="max-w-5xl h-auto bg-[#F5FEF9] p-4 mx-auto">
       <h3 className="text-3xl font-bold">Send A Parcel</h3>
       <p>Enter your parcel details</p>
 

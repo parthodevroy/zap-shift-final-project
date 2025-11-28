@@ -9,7 +9,7 @@ const MainLayOut = () => {
             <Link to={"/"}><Logo/></Link>
             <div className='flex items-center'>
                 <div className='flex-1'><Outlet/></div>
-                <div className='flex-1 bg-amber-50'>
+                <div className='flex-1 bg-white'>
                     <img src={img} alt=""/>
                 </div>
             </div>

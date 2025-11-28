@@ -18,6 +18,7 @@ import Approval from "../pages/dashboard/RiderApproval/Approval";
 import UserManagement from "../pages/dashboard/UserManagement/UserManagement";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import AssignRider from "../pages/dashboard/AssignRider/AssignRider";
+import AssignDelivery from "../pages/dashboard/AssignDelivarys/AssignDelivery";
 
 
 export const router = createBrowserRouter([
@@ -95,6 +96,14 @@ export const router = createBrowserRouter([
         path: "payment-history",
         Component: PaymentHistory
       },
+      // rider related routes only rider can see this page
+      {
+        path:"assign-delivery",
+        element:<AssignDelivery></AssignDelivery>
+
+      },
+
+      // admin related page only admin can access
       {
         path:"rider-approval",
         element:<AdminPrivateRoute><Approval></Approval></AdminPrivateRoute>

@@ -18,25 +18,35 @@ const Navber = () => {
 
   }
     const link=<>
-   <NavLink to={'/'}> <li><a>Home</a></li></NavLink>
-    <li><a>Survices</a></li>
+  
+    <li></li>
        <li>
-        <NavLink to="/covarage" className={({ isActive }) => isActive ? "text-teal-500" : ""}>
+        <NavLink to="/" className={({ isActive }) => isActive ? "text-teal-500 text-xl font-bold" : "text-xl font-bold"}>
+          Home
+        </NavLink>
+      </li>
+       <li className='text-xl font-bold'>
+        <NavLink >
+          Survice
+        </NavLink>
+      </li>
+       <li>
+        <NavLink to="/covarage" className={({ isActive }) => isActive ? "text-teal-500 text-xl font-bold" : "text-xl font-bold"}>
           Covarage
         </NavLink>
       </li>
        <li>
-        <NavLink to="/parcel" className={({ isActive }) => isActive ? "text-teal-500" : ""}>
+        <NavLink to="/parcel" className={({ isActive }) => isActive ?"text-teal-500 text-xl font-bold" : "text-xl font-bold"}>
           SendParcel
         </NavLink>
       </li> 
       {user && <> <li>
-        <NavLink to="/dashboard/my-parcels" className={({ isActive }) => isActive ? "text-teal-500" : ""}>
+        <NavLink to="/dashboard/my-parcels" className={({ isActive }) => isActive ?"text-teal-500 text-xl font-bold" : "text-xl font-bold"}>
           DashBoard
         </NavLink>
       </li>
        <li>
-        <NavLink to="/rider" className={({ isActive }) => isActive ? "text-teal-500" : ""}>
+        <NavLink to="/rider" className={({ isActive }) => isActive ? "text-teal-500 text-xl font-bold" : "text-xl font-bold"}>
           Be A Rider
         </NavLink>
       </li> 
@@ -50,7 +60,7 @@ const Navber = () => {
       </li>  */}
     </>
     return (
-       <div className="navbar sticky top-0 z-50 bg-white shadow-md mx-auto shadow-sm">
+       <div className="navbar sticky w-full h-28 top-0 z-50 bg-white shadow-md mx-auto shadow-sm">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -72,9 +82,9 @@ const Navber = () => {
   <div className="navbar-end">
    <div className="navbar-end">
         {user ? (
-          <button className="btn" onClick={handellogout}>Log Out</button>
+          <button className="btn text-xl font-semibold" onClick={handellogout}>Log Out</button>
         ) : (
-          <NavLink to="/login" className="btn">Login</NavLink>
+          <NavLink to="/login" className="btn text-xls font-semibold">Login</NavLink>
         )}
       </div>
   </div>

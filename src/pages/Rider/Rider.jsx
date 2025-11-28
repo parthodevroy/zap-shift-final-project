@@ -51,7 +51,7 @@ const Rider = () => {
      
       };
     return (
-       <div className="max-w-5xl h-auto bg-amber-50 p-4 mx-auto">
+       <div className="max-w-5xl h-auto bg-[#F5FEF9] p-4 mx-auto">
       <h3 className="text-3xl text-center font-bold">Be A Rider</h3>
       <p className='text-center'>Enter your details</p>
 
@@ -70,7 +70,7 @@ const Rider = () => {
             
 
             <fieldset className="fieldset">
-              <label className="label">Your Name</label>
+              <label className="label text-black">Your Name</label>
               <input
                 type="text"
                 defaultValue={user?.displayName}
@@ -81,7 +81,7 @@ const Rider = () => {
             </fieldset>
 
             <fieldset className="fieldset">
-              <label className="label">Email Address</label>
+              <label className="label text-black">Email Address</label>
               <input
                 type="text"
                 defaultValue={user?.email}
@@ -92,7 +92,7 @@ const Rider = () => {
             </fieldset>
 
             <fieldset className="fieldset">
-              <label className="label">NID</label>
+              <label className="label text-black">NID</label>
               <input
                 type="text"
                 className="input w-[350px]"
@@ -104,12 +104,12 @@ const Rider = () => {
             {/* sender region */}
             <fieldset className="fieldset">
 
-              <label className="label"> Region</label>
+              <label className="label text-black"> Region</label>
           <select
             className="select w-[350px]"
             {...register("Region", { required: true })}
           >
-            <option value="">Select Region</option>
+            <option className='text-black' value="">Select Region</option>
             {regions.map((reg,i) => (
               <option key={i} value={reg}>
               {reg} 
@@ -123,12 +123,12 @@ const Rider = () => {
           {/* sender district */}
             <fieldset className="fieldset">
 
-              <label className="label">District</label>
+              <label className="label text-black">District</label>
           <select
             className="select w-[350px]"
             {...register("District", { required: true })}
           >
-            <option value="">Select District</option>
+            <option className='text-black' value="">Select District</option>
             {dictrictByRegion(watchRegion).map((reg,i) => (
               <option key={i} value={reg}>
               {reg} 
@@ -144,7 +144,7 @@ const Rider = () => {
           <div>
             
             <fieldset className="fieldset">
-              <label className="label">Your Age</label>
+              <label className="label text-black">Your Age</label>
               <input
                 type="text"
                 className="input w-[350px]"
@@ -155,7 +155,7 @@ const Rider = () => {
 
 
             <fieldset className="fieldset">
-              <label className="label"> Phone</label>
+              <label className="label text-black"> Phone</label>
               <input
                 type="text"
                 className="input w-[350px]"
@@ -168,7 +168,7 @@ const Rider = () => {
           </div>
         </div>
 
-        <button className="btn items-center btn-neutral mt-3">Be a Rider</button>
+        <button className="btn flex justify-center btn-neutral mt-3">Be a Rider</button>
       </form>
     </div>
     );
