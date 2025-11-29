@@ -19,6 +19,7 @@ import UserManagement from "../pages/dashboard/UserManagement/UserManagement";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import AssignRider from "../pages/dashboard/AssignRider/AssignRider";
 import AssignDelivery from "../pages/dashboard/AssignDelivarys/AssignDelivery";
+import CompletedDelivery from "../pages/dashboard/CompletedDelivery/CompletedDelivery";
 
 
 export const router = createBrowserRouter([
@@ -32,12 +33,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/covarage",
-        loader: () => fetch("warehouses.json").then(res => res.json()),
+        loader: () => fetch("/warehouses.json").then(res => res.json()),
         element: <Covarage />
       },
       {
         path: "/parcel",
-        loader: () => fetch("warehouses.json").then(res => res.json()),
+        loader: () => fetch("/warehouses.json").then(res => res.json()),
         element: (
           <PrivateRoutes>
             <SendParcel />
@@ -46,7 +47,7 @@ export const router = createBrowserRouter([
       },
       {
         path:"/rider",
-         loader: () => fetch("warehouses.json").then(res => res.json()),
+         loader: () => fetch("/warehouses.json").then(res => res.json()),
         element:<PrivateRoutes><Rider></Rider></PrivateRoutes>
       }
     ]
@@ -95,6 +96,10 @@ export const router = createBrowserRouter([
       {
         path: "payment-history",
         Component: PaymentHistory
+      },
+      {
+        path: "completed-delivery",
+        element:<CompletedDelivery></CompletedDelivery>
       },
       // rider related routes only rider can see this page
       {

@@ -75,6 +75,22 @@ const DashBoard = () => {
             {/* only rider see this page */}
             {
               role === "rider" &&<>
+               <li>
+              <Link to={"assign-delivery"}>
+                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assign-rider">
+                  <FaUser />
+                  <span className="is-drawer-close:hidden">Assign Delivery</span>
+                </button>
+              </Link>
+            </li>
+               <li>
+              <Link to={"completed-delivery"}>
+                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Completed-Dekivery">
+                  <FaUser />
+                  <span className="is-drawer-close:hidden">Completed Delivery</span>
+                </button>
+              </Link>
+            </li>
               
               </>
             }
@@ -82,7 +98,7 @@ const DashBoard = () => {
             {/* only admin can see this section */}
              {
               role ==="admin" && <>
-               <li>
+               {/* <li>
               <Link to={"assign-delivery"}>
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assign-rider">
 
@@ -91,7 +107,7 @@ const DashBoard = () => {
                   <span className="is-drawer-close:hidden">Assign Delivery</span>
                 </button>
               </Link>
-            </li>
+            </li> */}
 
                <li>
               <Link to={"user-management"}>

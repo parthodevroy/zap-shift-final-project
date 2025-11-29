@@ -32,8 +32,8 @@ const AssignRider = () => {
         }
     });
 
-    console.log("Selected Parcel:", selectedRiders);
-    console.log("Available Riders:", riders);
+    // console.log("Selected Parcel:", selectedRiders);
+    // console.log("Available Riders:", riders);
 
 
     // modal open and how many rider available this district show
@@ -47,8 +47,8 @@ const AssignRider = () => {
    const handleAssignRider = (rider) => {
   const riderInfo = {
     riderId: rider._id,
-    riderEmail: rider.EmailAddress, // EmailAddress match mongo field
-    riderName: rider.Name,           // Name match mongo field
+    riderEmail: rider.EmailAddress, 
+    riderName: rider.Name,           
     parcelId: selectedRiders._id
   };
 
