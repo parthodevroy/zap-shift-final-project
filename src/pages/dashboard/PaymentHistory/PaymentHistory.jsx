@@ -10,13 +10,13 @@ const PaymentHistory = () => {
     const { data: payments = [] } = useQuery({
         queryKey: ["myDashboard", user?.email],
         queryFn: async () => {
-            console.log("FE → calling payment API..."); // <--- Add
+           
             const res = await axiosSecure.get(`payment?email=${user.email}`)
-             console.log("FE → payment API response:", res.data); // <--- Add
+             
             return res.data
         }
     })
-    console.log(payments);
+   
 
     return (
         <div>

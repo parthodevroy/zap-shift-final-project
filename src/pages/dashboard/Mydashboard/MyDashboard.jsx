@@ -68,9 +68,11 @@ const MyDashboard = () => {
         }
     });
 };
+console.log(parcels);
 
     return (
         <div>
+          
            
 
             <div className="overflow-x-auto">
@@ -104,7 +106,7 @@ const MyDashboard = () => {
           <button className='btn btn-primary' type="button">Pay</button>
           </Link>
           }</td>
-        <td>{p.trackingId}</td>
+      <Link to={`/traking-log/${p.trackingId}`}><td>{p.trackingId}</td></Link>
         <td className='text-yellow-300'>{p.deliveryStatus}</td>
         <td>
 

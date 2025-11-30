@@ -20,6 +20,7 @@ import AdminPrivateRoute from "./AdminPrivateRoute";
 import AssignRider from "../pages/dashboard/AssignRider/AssignRider";
 import AssignDelivery from "../pages/dashboard/AssignDelivarys/AssignDelivery";
 import CompletedDelivery from "../pages/dashboard/CompletedDelivery/CompletedDelivery";
+import TrakingLog from "../pages/TrakingLog/TrakingLog";
 
 
 export const router = createBrowserRouter([
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
         path:"/rider",
          loader: () => fetch("/warehouses.json").then(res => res.json()),
         element:<PrivateRoutes><Rider></Rider></PrivateRoutes>
+      },
+      {
+        path:'/traking-log/:trackingId',
+        Component:TrakingLog
       }
     ]
   },
@@ -111,15 +116,21 @@ export const router = createBrowserRouter([
       // admin related page only admin can access
       {
         path:"rider-approval",
-        element:<AdminPrivateRoute><Approval></Approval></AdminPrivateRoute>
+        element:<AdminPrivateRoute>
+          <Approval></Approval>
+          </AdminPrivateRoute>
       },
       {
         path:"assign-rider",
-        element:<AdminPrivateRoute><AssignRider></AssignRider></AdminPrivateRoute>
+        element:<AdminPrivateRoute>
+          <AssignRider></AssignRider>
+          </AdminPrivateRoute>
       },
       {
         path:"user-management",
-       element:<AdminPrivateRoute><UserManagement></UserManagement></AdminPrivateRoute>
+       element:<AdminPrivateRoute>
+        <UserManagement></UserManagement>
+        </AdminPrivateRoute>
     
       }
     ]

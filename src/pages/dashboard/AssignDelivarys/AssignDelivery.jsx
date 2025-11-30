@@ -23,7 +23,8 @@ const AssignDelivery = () => {
     const handelDeliveryStatusUpdate = (parcel,status) => {
        const statusInfo = { 
         deliveryStatus:status ,
-        riderId:parcel.riderId
+        riderId:parcel.riderId,
+        trackingId:parcel.trackingId
 
        };
         let message = `Parcel status updated:${status.split('_').join(' ')}`;
