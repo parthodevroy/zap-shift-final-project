@@ -7,8 +7,8 @@ import Login from "../auth/Login";
 import Register from "../auth/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import SendParcel from "../pages/SendPersel/SendParcel";
-import DashBoard from "../mainlayout/DashBoard";
-import MyDashboard from "../pages/dashboard/Mydashboard/MyDashboard";
+
+// import MyDashboard from "../pages/dashboard/Mydashboard/MyDashboard";
 import Payment from "../pages/dashboard/Payment/Payment";
 import PaymentSuccess from "../pages/PaymentSuccess/PaymentSuccess";
 import PaymentCancel from "../pages/PaymentCanchel/PaymentCancel";
@@ -21,6 +21,10 @@ import AssignRider from "../pages/dashboard/AssignRider/AssignRider";
 import AssignDelivery from "../pages/dashboard/AssignDelivarys/AssignDelivery";
 import CompletedDelivery from "../pages/dashboard/CompletedDelivery/CompletedDelivery";
 import TrakingLog from "../pages/TrakingLog/TrakingLog";
+
+import DashBoard from "../mainlayout/DashBoard";
+import MyParcels from "../pages/dashboard/Mydashboard/MyParcels";
+import DashboardHome from "../pages/dashboard/DashboardHome/DashboardHome";
 
 
 export const router = createBrowserRouter([
@@ -77,14 +81,18 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       <PrivateRoutes>
-        <DashBoard />
+        <DashBoard></DashBoard>
       </PrivateRoutes>
     ),
     children: [
       {
         index:true,
+        element:<DashboardHome></DashboardHome>
+
+      },
+      {
         path: "my-parcels",
-        Component: MyDashboard
+        Component: MyParcels
       },
       {
         path: "payment/:paymentId",

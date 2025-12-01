@@ -5,6 +5,8 @@ import { RiSecurePaymentFill } from "react-icons/ri";
 import { FaUser } from 'react-icons/fa6';
 import useRole from '../hooks/useRole';
 import { SiRider } from "react-icons/si";
+import imglogo from "../assets/../../src/assets/logo.png"
+
 
 
 const DashBoard = () => {
@@ -12,7 +14,7 @@ const DashBoard = () => {
    if (isLoading) {
     return (
       <div className="text-center p-10 text-xl font-semibold">
-        Loading Dashboard...
+      loading....
       </div>
     );
   }
@@ -41,8 +43,12 @@ const DashBoard = () => {
           {/* Sidebar content here */}
           <ul className="menu w-full grow">
             {/* List item */}
+          
+          <Link to={"/"}><li>
+            <img src={imglogo} alt="" srcset="" className='w-20' />
+          </li></Link>
             <li>
-              <Link to={"/"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
+              <Link to={"/dashboard"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
                 {/* Home icon */}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
                 <span className="is-drawer-close:hidden">Homepage</span>
@@ -51,7 +57,7 @@ const DashBoard = () => {
            
 
             {/* my parcels */}
-            <Link to={"my-parcels"}>
+            <Link to={"/dashboard/my-parcels"}>
             <li>
               <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My-Parcels">
                 {/* Settings icon */}
@@ -63,7 +69,7 @@ const DashBoard = () => {
             </Link>
 
             <li>
-              <Link to={"payment-history"}>
+              <Link to={"/dashboard/payment-history"}>
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
                   {/* Settings icon */}
 
@@ -76,7 +82,7 @@ const DashBoard = () => {
             {
               role === "rider" &&<>
                <li>
-              <Link to={"assign-delivery"}>
+              <Link to={"/dashboard/assign-delivery"}>
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assign-rider">
                   <FaUser />
                   <span className="is-drawer-close:hidden">Assign Delivery</span>
@@ -84,7 +90,7 @@ const DashBoard = () => {
               </Link>
             </li>
                <li>
-              <Link to={"completed-delivery"}>
+              <Link to={"/dashboard/completed-delivery"}>
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Completed-Dekivery">
                   <FaUser />
                   <span className="is-drawer-close:hidden">Completed Delivery</span>
@@ -110,7 +116,7 @@ const DashBoard = () => {
             </li> */}
 
                <li>
-              <Link to={"user-management"}>
+              <Link to={"/dashboard/user-management"}>
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Management">
 
 
@@ -120,7 +126,7 @@ const DashBoard = () => {
               </Link>
             </li>
                <li>
-              <Link to={"assign-rider"}>
+              <Link to={"/dashboard/assign-rider"}>
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="assign rider">
 
 
@@ -131,7 +137,7 @@ const DashBoard = () => {
             </li>
 
              <li>
-              <Link to={"rider-approval"}>
+              <Link to={"/dashboard/rider-approval"}>
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="rider approval">
 
 

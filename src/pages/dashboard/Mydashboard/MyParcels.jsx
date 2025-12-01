@@ -7,7 +7,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 
-const MyDashboard = () => {
+const MyParcels= () => {
 
   
     const {user}=useAuth()
@@ -133,4 +133,4 @@ console.log(parcels);
     );
 };
 
-export default MyDashboard;
+export default MyParcels;

@@ -41,10 +41,15 @@ const Navber = () => {
         </NavLink>
       </li> 
       {user && <> <li>
-        <NavLink to="/dashboard/my-parcels" className={({ isActive }) => isActive ?"text-teal-500 text-xl font-bold" : "text-xl font-bold"}>
+        <NavLink to="/dashboard" className={({ isActive }) => isActive ?"text-teal-500 text-xl font-bold" : "text-xl font-bold"}>
           DashBoard
         </NavLink>
       </li>
+       <li>
+        <NavLink to="/dashboard/my-parcels" className={({ isActive }) => isActive ? "text-teal-500 text-xl font-bold" : "text-xl font-bold"}>
+          My Parcel
+        </NavLink>
+      </li> 
        <li>
         <NavLink to="/rider" className={({ isActive }) => isActive ? "text-teal-500 text-xl font-bold" : "text-xl font-bold"}>
           Be A Rider
