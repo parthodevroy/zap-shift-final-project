@@ -80,10 +80,10 @@
 import React from 'react';
 import img1 from '../../assets/bookingicon.png';
 import AnimateText from '../AnimateText/AnimateText';
-import { motion } from "framer-motion"; // <-- Framer Motion ইমপোর্ট করা হলো
+import { motion } from "framer-motion"; 
 
 
-// অ্যানিমেশন ভ্যারিয়েন্টগুলো এখানে সংজ্ঞায়িত করুন (বা কম্পোনেন্টের বাইরে)
+
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -138,52 +138,52 @@ const Survices = () => {
             img:img1,
              title: "Active Volunteers",
             desc:'From personal packages to business shipments — we deliver on time, every time.'
-        }  ]; // stat এর নাম stats করা হলো
+        }  ];
 
     return (
         <div className='h-[900px] bg-[#03373D] rounded-xl border-2'>
             <div className='flex flex-col text-center justify-center items-center p-16'>
                 
-                {/* 1. শিরোনাম অ্যানিমেশন */}
+              
                 <AnimateText
                     text="Our Services"
-                    className="text-3xl font-bold text-white mb-4" // মার্জিন যোগ করা হলো
+                    className="text-3xl font-bold text-white mb-4" 
                 />
 
-                {/* 2. প্যারাগ্রাফ অ্যানিমেশন */}
+               
                 <AnimateText
                     text="Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time."
-                    className="text-white text-lg max-w-2xl" // স্টাইল আপডেট করা হলো
+                    className="text-white text-lg max-w-2xl"
                 />
 
             </div>
             
-            {/* 3. কার্ড কন্টেইনার অ্যানিমেশন */}
+           
             <motion.div 
                 className="max-w-6xl p-4 h-[600px] w-[1280px] mx-auto my-10 grid sm:grid-cols-2 md:grid-cols-3 gap-6 text-center"
                 variants={containerVariants}
                 initial="hidden"
-                whileInView="visible" // স্ক্রল করার সময় অ্যানিমেট হবে
+                whileInView="visible" 
                 viewport={{ once: true, amount: 0.2 }}
             >
                 {stats.map((stat, idx) => (
-                    // 4. প্রতিটি কার্ড অ্যানিমেশন
+                   
                     <motion.div
                         key={idx}
                         variants={itemVariants}
                         className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
                     >
-                        {/* Image */}
+                      
                         <img
                             src={stat.img}
                             alt={stat.title}
                             className="w-28 h-26 mx-auto mb-4 object-contain"
                         />
 
-                        {/* Title */}
+                       
                         <p className="text-gray-800 font-semibold mt-1">{stat.title}</p>
 
-                        {/* Description */}
+                       
                         <p className="text-gray-600 mt-2 text-sm">
                             {stat.desc}
                         </p>

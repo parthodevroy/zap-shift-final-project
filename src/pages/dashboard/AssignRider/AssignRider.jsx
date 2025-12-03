@@ -21,7 +21,7 @@ const AssignRider = () => {
     })
     // rider get api how many rider avabilvale now get this api
 
-    const { data: riders = [] } = useQuery({
+    const { data: riders = [],refetch:riderRefetch } = useQuery({
         queryKey: ['riders', selectedRiders?.senderDistrict, 'available'],
         enabled: !!selectedRiders,
         queryFn: async () => {
@@ -57,6 +57,7 @@ const AssignRider = () => {
     .patch(`/parcels/${selectedRiders._id}`, riderInfo)
     .then((res) => {
       if (res.data.modifiedCount) {
+        riderRefetch()
         Swal.fire({
           position: "top-end",
           icon: "success",

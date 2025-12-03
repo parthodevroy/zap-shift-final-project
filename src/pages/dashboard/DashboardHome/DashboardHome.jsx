@@ -3,12 +3,14 @@ import useRole from '../../../hooks/useRole';
 import AdminDashboard from '../AdminDashboard/AdminDashboard';
 import RiderDashboard from '../RiderDashboard/RiderDashboard';
 import UserDashboard from '../UserDashboard/UserDashboard';
+import LoadingPage from '../../../component/LoadingPage/LoadingPage';
 
 const DashboardHome = () => {
     const {role,adminloading}=useRole()
 
     if (adminloading) {
-        return <div>loading.....</div>
+      
+        return <LoadingPage></LoadingPage>
         
     }
     if (role ==="admin") {

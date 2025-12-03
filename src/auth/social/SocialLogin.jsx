@@ -24,7 +24,7 @@ const SocialLogin = () => {
                     photoURL: result.user.photoURL 
                 };
 
-                axios.post("http://localhost:3000/user", userData)
+                axios.post("https://zap-shift-server-alpha-six.vercel.app/user", userData)
                     .then(res => {
 
                         console.log("user crearted database from social", res.data);

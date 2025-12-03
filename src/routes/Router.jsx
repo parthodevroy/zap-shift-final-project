@@ -25,6 +25,7 @@ import TrakingLog from "../pages/TrakingLog/TrakingLog";
 import DashBoard from "../mainlayout/DashBoard";
 import MyParcels from "../pages/dashboard/Mydashboard/MyParcels";
 import DashboardHome from "../pages/dashboard/DashboardHome/DashboardHome";
+import SurvicePage from "../pages/Survices/SurvicePage";
 
 
 export const router = createBrowserRouter([
@@ -40,6 +41,11 @@ export const router = createBrowserRouter([
         path: "/covarage",
         loader: () => fetch("/warehouses.json").then(res => res.json()),
         element: <Covarage />
+      },
+      {
+        path: "/service",
+       
+        element: <SurvicePage />
       },
       {
         path: "/parcel",

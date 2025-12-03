@@ -5,6 +5,8 @@ import Survices from './Survices';
 import Brands from './Brands';
 import Review from './review/Review';
 import SurviceCard from './SurviceCard';
+import ProjectOverview from './ProjectOverviwe/ProjectOverview';
+import HeroSection from './HeroSection/HeroSection';
 
 const reviwsload=fetch("/reviews.json")
     .then(res=>res.json())
@@ -12,11 +14,14 @@ const reviwsload=fetch("/reviews.json")
 const Homepage = () => {
   
     return (
-        <div className='space-y-6'>
-            <Home/>
-            <Card1/>
-            <Survices/>
+        <div className='w-full overflow-hidden'>
+              <Home/>
+            <HeroSection/>
             <Brands/>
+            {/* <Card1/> */}
+            {/* <Survices/> */}
+            <ProjectOverview/>
+            
             <SurviceCard/>
            <Review reviwsload={reviwsload}></Review>
         </div>

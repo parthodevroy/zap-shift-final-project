@@ -2,10 +2,11 @@ import React from 'react';
 import { Link, Outlet } from 'react-router';
 import { CiDeliveryTruck } from "react-icons/ci";
 import { RiSecurePaymentFill } from "react-icons/ri";
-import { FaUser } from 'react-icons/fa6';
+import { FaProductHunt, FaUser } from 'react-icons/fa6';
 import useRole from '../hooks/useRole';
 import { SiRider } from "react-icons/si";
 import imglogo from "../assets/../../src/assets/logo.png"
+import LoadingPage from '../component/LoadingPage/LoadingPage';
 
 
 
@@ -13,9 +14,9 @@ const DashBoard = () => {
   const {role,isLoading}=useRole()
    if (isLoading) {
     return (
-      <div className="text-center p-10 text-xl font-semibold">
-      loading....
-      </div>
+      
+     <LoadingPage></LoadingPage>
+     
     );
   }
   console.log(role);
@@ -62,41 +63,46 @@ const DashBoard = () => {
               <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My-Parcels">
                 {/* Settings icon */}
 
-                <CiDeliveryTruck />
+                <FaProductHunt />
                 <span className="is-drawer-close:hidden">My Parcels</span>
               </button>
             </li>
             </Link>
 
+         <Link to={"/dashboard/payment-history"}>
             <li>
-              <Link to={"/dashboard/payment-history"}>
+             
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
                   {/* Settings icon */}
 
                   <RiSecurePaymentFill />
                   <span className="is-drawer-close:hidden">Payment History</span>
                 </button>
-              </Link>
             </li>
+            </Link>
             {/* only rider see this page */}
             {
               role === "rider" &&<>
+               <Link to={"/dashboard/assign-delivery"}>
                <li>
-              <Link to={"/dashboard/assign-delivery"}>
+             
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assign-rider">
                   <FaUser />
                   <span className="is-drawer-close:hidden">Assign Delivery</span>
                 </button>
-              </Link>
+              
             </li>
+            </Link>
+             <Link to={"/dashboard/completed-delivery"}>
                <li>
-              <Link to={"/dashboard/completed-delivery"}>
+             
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Completed-Dekivery">
                   <FaUser />
                   <span className="is-drawer-close:hidden">Completed Delivery</span>
                 </button>
-              </Link>
+             
             </li>
+             </Link>
               
               </>
             }
@@ -104,48 +110,43 @@ const DashBoard = () => {
             {/* only admin can see this section */}
              {
               role ==="admin" && <>
-               {/* <li>
-              <Link to={"assign-delivery"}>
-                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assign-rider">
-
-
-                  <FaUser />
-                  <span className="is-drawer-close:hidden">Assign Delivery</span>
-                </button>
-              </Link>
-            </li> */}
-
-               <li>
+               
               <Link to={"/dashboard/user-management"}>
+               <li>
+             
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Management">
 
 
                   <FaUser />
                   <span className="is-drawer-close:hidden">User Management</span>
                 </button>
-              </Link>
+             
             </li>
+             </Link>
+             <Link to={"/dashboard/assign-rider"}>
                <li>
-              <Link to={"/dashboard/assign-rider"}>
+              
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="assign rider">
 
 
                   <SiRider/>
                   <span className="is-drawer-close:hidden">Assign Rider</span>
                 </button>
-              </Link>
+             
             </li>
-
+             </Link>
+          <Link to={"/dashboard/rider-approval"}>
              <li>
-              <Link to={"/dashboard/rider-approval"}>
+              
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="rider approval">
 
 
                   <RiSecurePaymentFill />
                   <span className="is-drawer-close:hidden">rider approval</span>
                 </button>
-              </Link>
+             
             </li>
+             </Link>
               </>
             }
            

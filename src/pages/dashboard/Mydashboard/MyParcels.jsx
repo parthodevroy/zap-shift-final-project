@@ -6,6 +6,7 @@ import { MdPageview } from "react-icons/md";
 import { FaRegTrashAlt } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
+import LoadingPage from '../../../component/LoadingPage/LoadingPage';
 
 const MyParcels= () => {
 
@@ -22,11 +23,8 @@ const MyParcels= () => {
 
     if (isLoading) {
         return (
-            <div className="flex justify-center items-center h-full min-h-[500px]">
-             
-                <span className="loading loading-spinner loading-lg text-primary"></span>
-                <p className='ml-2 text-xl font-medium'>Loading parcels...</p>
-            </div>
+          <LoadingPage></LoadingPage>
+         
         );
     }
 
