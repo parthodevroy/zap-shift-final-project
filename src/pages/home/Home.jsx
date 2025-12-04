@@ -7,7 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Home = () => {
   return (
-    <div className="max-w-4xl mx-auto mt-4">
+    <div className="w-full mx-auto">
       <Carousel
         autoPlay
         infiniteLoop

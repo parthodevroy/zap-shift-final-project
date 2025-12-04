@@ -26,6 +26,10 @@ import DashBoard from "../mainlayout/DashBoard";
 import MyParcels from "../pages/dashboard/Mydashboard/MyParcels";
 import DashboardHome from "../pages/dashboard/DashboardHome/DashboardHome";
 import SurvicePage from "../pages/Survices/SurvicePage";
+import Support from "../pages/Support/Support";
+import Contact from "../pages/Contact/Contact";
+import About from "../pages/About/About";
+import Leaderboard from "../pages/Leaderboard/Leaderboard";
 
 
 export const router = createBrowserRouter([
@@ -41,6 +45,23 @@ export const router = createBrowserRouter([
         path: "/covarage",
         loader: () => fetch("/warehouses.json").then(res => res.json()),
         element: <Covarage />
+      },
+      {
+        path: "/support",
+       
+        element: <Support />
+      },
+      {
+        path: "/contact",
+        element: <Contact/>
+      },
+      {
+        path: "/about",
+        element: <About/>
+      },
+      {
+        path: "/leaderboard",
+        element: <Leaderboard/>
       },
       {
         path: "/service",

@@ -38,8 +38,8 @@ if (district) {
   return (
     
     
-    <div className="w-full h-[600px] md:h-[700px]">
-        <h1 className="text-3xl text-black">Total 64 District</h1>
+    <div className="w-full pl-6 h-[600px] md:h-[700px]">
+        <h1 className="text-2xl text-black">Total 64 District</h1>
         {/* serce */}
 
         <form onSubmit={sercemap} className="p-3 flex items-center gap-3">
