@@ -35,7 +35,7 @@ const Support = () => {
       return;
     }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 800)); // simulate API
+    await new Promise((r) => setTimeout(r, 800)); 
     setLoading(false);
     setStatus({ ok: true, msg: "Report submitted successfully!" });
     setForm({ name: "", email: "", parcelId: "", message: "" });

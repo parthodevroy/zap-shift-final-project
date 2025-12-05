@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../hooks/useAuth';
 import SocialLogin from './social/SocialLogin';
@@ -7,9 +7,11 @@ import axios from 'axios';
 import useAxios from '../hooks/useAxios';
 
 const Register = () => {
-    const axiosSecure=useAxios()
+    const axiosSecure = useAxios();
 
-    const { userRegister,updateUser } = useAuth();
+    const { userRegister, updateUser } = useAuth();
+    const [success, setSuccess] = useState("");
+    const [error, setError] = useState("");
 
     const {
         register,
@@ -18,74 +20,53 @@ const Register = () => {
         formState: { errors }
     } = useForm();
 
-   const handelRegister = (data) => {
-  const photoFile = data.photo[0];
+    const handelRegister = async (data) => {
+        setSuccess("");
+        setError("");
 
-  userRegister(data.email, data.password)
-    .then(result=> {
-      
-      console.log(result);
-      
-      
-      const formData = new FormData();
-      formData.append("image", photoFile);
+        try {
+            // step 1: firebase register
+            const result = await userRegister(data.email, data.password);
 
-      const image_api_url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_bb_key}`;
+            // step 2: upload image to imgbb
+            const formData = new FormData();
+            formData.append("image", data.photo[0]);
 
-      
-      axios.post(image_api_url, formData)
-        .then(res => {
-          const imageUrl = res.data.data.url; 
+            const image_api_url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_bb_key}`;
 
-          const userData={
-            email:data.email,
-            displayName: data.name,
-            photoURL: imageUrl 
+            const uploadRes = await axios.post(image_api_url, formData);
+            const imageUrl = uploadRes.data.data.url;
 
+            // step 3: save user in database
+            const userData = {
+                email: data.email,
+                displayName: data.name,
+                photoURL: imageUrl
+            };
 
-          }
+            const dbRes = await axiosSecure.post("/user", userData);
 
-          axiosSecure.post("/user",userData)
-          .then(result=>{
-            if (result.data.insertedId) {
-                console.log("user crearted database");
-                reset()
-                
-                
-            }
-          })
-
-
-          const updateData = {
-            displayName: data.name,
-            photoURL: imageUrl 
-          };
-
-         
-          updateUser(updateData)
-            .then(() => {
-              console.log("Profile updated successfully!");
-            })
-            .catch(err => {
-              console.log("Update Error:", err);
+            // step 4: update firebase profile
+            await updateUser({
+                displayName: data.name,
+                photoURL: imageUrl
             });
 
-        })
-        .catch(err => {
-          console.log("Image Upload Error:", err);
-        });
+            if (dbRes.data.insertedId) {
+                setSuccess("User registered successfully!");
+                reset();
+            }
 
-    })
-    .catch(error => {
-      console.log("Register Error:", error);
-    });
-};
-
+        } catch (err) {
+            console.log("Error:", err);
+            setError("Registration failed! Please try again.");
+        }
+    };
 
     return (
         <div className="card w-full mx-auto max-w-sm p-4 shadow-md">
             <h3 className="text-2xl font-bold text-center">Create an Account</h3>
-            <p className="text-center">Register with ZapShift</p>
+            <p className="text-center mb-2">Register with ZapShift</p>
 
             <form className="w-full" onSubmit={handleSubmit(handelRegister)}>
                 <fieldset className="fieldset">
@@ -114,7 +95,7 @@ const Register = () => {
                         <p className="text-red-500">Email is required</p>
                     )}
 
-                    {/* Photo URL */}
+                    {/* Photo */}
                     <label className="label">Profile Photo</label>
                     <input
                         type="file"
@@ -153,10 +134,20 @@ const Register = () => {
                     )}
 
                     <button className="btn btn-neutral mt-4 w-full">Register</button>
+
+                    {/* Success Message */}
+                    {success && (
+                        <p className="text-green-600 text-center mt-2">{success}</p>
+                    )}
+
+                    {/* Error Message */}
+                    {error && (
+                        <p className="text-red-600 text-center mt-2">{error}</p>
+                    )}
                 </fieldset>
 
                 <p className="mt-2 text-sm">
-                    Already have an account? 
+                    Already have an account?
                     <Link className="text-blue-500 underline pl-1" to="/login">
                         Login
                     </Link>
