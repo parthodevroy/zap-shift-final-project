@@ -3,7 +3,7 @@ import axios from "axios";
 import React from "react";
 import { useParams } from "react-router";
 
-const TrakingLog = () => {
+const ProductTraking = () => {
   const { trackingId } = useParams();
 
   const { data: logs = [] } = useQuery({
@@ -53,4 +53,4 @@ const TrakingLog = () => {
   );
 };
 
-export default TrakingLog;
+export default ProductTraking;

@@ -1,171 +1,275 @@
-
 import React, { useState } from "react";
 import { NavLink } from "react-router";
-import { FiMenu } from "react-icons/fi";
-import { FaUser, FaUserShield, FaSignOutAlt } from "react-icons/fa";
-import { SiRider } from "react-icons/si";
-import Logo from "./Logo";
+import { FaSignOutAlt, FaUserCircle } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 import useRole from "../hooks/useRole";
+import Logo from "./Logo";
 
-const Navber = () => {
-  const [open, setOpen] = useState(false); 
-  const navbarHeight = 64;
-
+const Navbar = () => {
   const { user, signout } = useAuth();
   const { role } = useRole();
+  const [showMenu, setShowMenu] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const handleLogout = () => {
     signout().catch((err) => console.log(err));
+    setShowMenu(false);
+    setShowDropdown(false);
   };
 
-  // Public Links
-  const publicLinks = [
-    { to: "/", label: "Home" },
-    { to: "/service", label: "Service" },
-    { to: "/covarage", label: "Coverage" },
-    { to: "/support", label: "Support" },
-    { to: "/contact", label: "Contact" },
-    { to: "/about", label: "About" },
-    { to: "/leaderboard", label: "LeaderBoard" },
-  ];
-
-  // Dashboard Links (role based)
-  const userLinks = [
-    { to: "/parcel", label: "Send Parcel", icon: <FaUser />, roles: ["user", "rider", "admin"] },
-    { to: "/dashboard", label: "Dashboard", icon: <FaUser />, roles: ["user", "rider", "admin"] },
-    { to: "/dashboard/assign-delivery", label: "Assign Delivery", icon: <SiRider />, roles: ["rider"] },
-    { to: "/dashboard/user-management", label: "User Management", icon: <FaUserShield />, roles: ["admin"] },
-    { to: "/dashboard/assign-rider", label: "Assign Rider", icon: <SiRider />, roles: ["admin"] },
-  ];
-
-  return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <aside
-        className={`
-          fixed transition-all duration-300 z-40 
-          bg-white shadow-[4px_0_20px_rgba(0,0,0,0.08)]
-          ${open ? "w-64 opacity-100" : "w-0 opacity-0 md:w-64 md:opacity-100"}
-        `}
-        style={{
-          top: `${navbarHeight}px`,
-          height: `calc(100vh - ${navbarHeight}px)`,
-        }}
+  const linkItems = (
+    <>
+      {/* Public Links */}
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "text-teal-600 font-extrabold border-b-2 border-teal-600 px-2 py-1 transition-all"
+              : "text-gray-700 font-extrabold hover:text-teal-600 px-2 py-1 transition-all"
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li
+        onMouseEnter={() => setShowDropdown(true)}
+        onMouseLeave={() => setShowDropdown(false)}
+        className="relative"
       >
-        <div className="p-5">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">Navigation</h2>
+        <span className="cursor-pointer text-gray-700 font-extrabold hover:text-teal-600 px-2 py-1 transition-all">
+          Projects
+        </span>
+        {showDropdown && (
+          <ul className="absolute top-full left-0 bg-white shadow-lg rounded mt-2 w-48">
+            <li className="px-4 py-2 hover:bg-teal-100">
+              <NavLink to="/project-page">Project Page</NavLink>
+            </li>
+            <li className="px-4 py-2 hover:bg-teal-100">
+              <NavLink to="/project-details">Project Details</NavLink>
+            </li>
+          </ul>
+        )}
+      </li>
+      <li>
+        <NavLink
+          to="/service"
+          className={({ isActive }) =>
+            isActive
+              ? "text-teal-600 font-extrabold border-b-2 border-teal-600 px-2 py-1 transition-all"
+              : "text-gray-700 font-extrabold hover:text-teal-600 px-2 py-1 transition-all"
+          }
+        >
+          Service
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/coverage"
+          className={({ isActive }) =>
+            isActive
+              ? "text-teal-600 font-extrabold border-b-2 border-teal-600 px-2 py-1 transition-all"
+              : "text-gray-700 font-extrabold hover:text-teal-600 px-2 py-1 transition-all"
+          }
+        >
+          Coverage
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/support"
+          className={({ isActive }) =>
+            isActive
+              ? "text-teal-600 font-extrabold border-b-2 border-teal-600 px-2 py-1 transition-all"
+              : "text-gray-700 font-extrabold hover:text-teal-600 px-2 py-1 transition-all"
+          }
+        >
+          Support
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive
+              ? "text-teal-600 font-extrabold border-b-2 border-teal-600 px-2 py-1 transition-all"
+              : "text-gray-700 font-extrabold hover:text-teal-600 px-2 py-1 transition-all"
+          }
+        >
+          Contact
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive
+              ? "text-teal-600 font-extrabold border-b-2 border-teal-600 px-2 py-1 transition-all"
+              : "text-gray-700 font-extrabold hover:text-teal-600 px-2 py-1 transition-all"
+          }
+        >
+          About
+        </NavLink>
+      </li>
 
-          <ul className="space-y-2">
-            {/* Public Links */}
-            {publicLinks.map((link) => (
-              <li key={link.to}>
+      {/* User Links */}
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to="/parcel"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-teal-600 font-extrabold border-b-2 border-teal-600 px-2 py-1 transition-all"
+                  : "text-gray-700 font-extrabold hover:text-teal-600 px-2 py-1 transition-all"
+              }
+            >
+              Send Parcel
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-teal-600 font-extrabold border-b-2 border-teal-600 px-2 py-1 transition-all"
+                  : "text-gray-700 font-extrabold hover:text-teal-600 px-2 py-1 transition-all"
+              }
+            >
+              Dashboard
+            </NavLink>
+          </li>
+          {role === "rider" && (
+            <li>
+              <NavLink
+                to="/dashboard/assign-delivery"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-teal-600 font-extrabold border-b-2 border-teal-600 px-2 py-1 transition-all"
+                    : "text-gray-700 font-extrabold hover:text-teal-600 px-2 py-1 transition-all"
+                }
+              >
+                Assign Delivery
+              </NavLink>
+            </li>
+          )}
+          {role === "admin" && (
+            <>
+              <li>
                 <NavLink
-                  to={link.to}
+                  to="/dashboard/user-management"
                   className={({ isActive }) =>
-                    `block px-4 py-2 rounded-lg text-base font-bold 
-                     transition-all ${
-                       isActive
-                         ? "bg-teal-100 text-teal-600 shadow-sm"
-                         : "text-gray-700 hover:bg-gray-100 hover:text-teal-600"
-                     }`
+                    isActive
+                      ? "text-teal-600 font-extrabold border-b-2 border-teal-600 px-2 py-1 transition-all"
+                      : "text-gray-700 font-extrabold hover:text-teal-600 px-2 py-1 transition-all"
                   }
                 >
-                  {link.label}
+                  User Management
                 </NavLink>
               </li>
-            ))}
+              <li>
+                <NavLink
+                  to="/dashboard/assign-rider"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-teal-600 font-extrabold border-b-2 border-teal-600 px-2 py-1 transition-all"
+                      : "text-gray-700 font-extrabold hover:text-teal-600 px-2 py-1 transition-all"
+                  }
+                >
+                  Assign Rider
+                </NavLink>
+              </li>
+            </>
+          )}
+        </>
+      )}
+    </>
+  );
 
-            {/* Role Based Dashboard Links */}
-            {user &&
-              userLinks
-                .filter((l) => l.roles.includes(role))
-                .map((link) => (
-                  <li key={link.to}>
-                    <NavLink
-                      to={link.to}
-                      className={({ isActive }) =>
-                        `flex items-center gap-3 px-4 py-2 rounded-lg text-base font-medium 
-                         transition-all ${
-                           isActive
-                             ? "bg-teal-100 text-teal-600 shadow-sm"
-                             : "text-gray-700 hover:bg-gray-100 hover:text-teal-600"
-                         }`
-                      }
-                    >
-                      <span className="text-lg">{link.icon}</span>
-                      {link.label}
-                    </NavLink>
-                  </li>
-                ))}
-          </ul>
-        </div>
-      </aside>
+  return (
+    <nav className="bg-white w-full px-4 py-4 flex justify-between items-center sticky top-0 z-50">
+      {/* Logo */}
+      <NavLink to="/" className="text-2xl font-bold text-teal-600">
+       <Logo/>
+      </NavLink>
 
-      {/* Main Content */}
-      <div
-        className={`
-          flex-1 flex flex-col transition-all duration-300
-          ${open ? "ml-64" : "ml-0 md:ml-64"}
-        `}
-      >
-        {/* Top Navbar */}
-        <nav
-          className="fixed top-0 left-0 right-0 bg-[#e7f8b8] px-6 py-4 flex items-center justify-between shadow z-50"
-          style={{ height: `${navbarHeight}px` }}
-        >
-          {/* Logo + Toggle */}
-          <div className="flex items-center gap-4">
-            {/* FiMenu only on mobile */}
+      {/* Desktop Menu */}
+      <ul className="hidden lg:flex gap-4 items-center">{linkItems}</ul>
+
+      {/* Auth/User Menu */}
+      <div className="relative">
+        {user ? (
+          <div>
             <button
-              onClick={() => setOpen(!open)}
-              className="text-2xl hover:bg-white/40 p-2 rounded md:hidden"
+              onClick={() => setShowMenu(!showMenu)}
+              className="w-10 h-10 rounded-full border-2 border-teal-500 overflow-hidden"
             >
-              <FiMenu />
+              <FaUserCircle className="w-full h-full text-gray-600" />
             </button>
-
-            <NavLink to="/" className="flex items-center">
-              <Logo />
-            </NavLink>
-          </div>
-
-          {/* Right Buttons */}
-          <div className="flex items-center gap-4">
-            {!user ? (
-              <>
-                <NavLink
-                  to="/login"
-                  className="px-4 py-2 bg-[#debb21] text-white rounded-full hover:bg-teal-600"
-                >
-                  Login
-                </NavLink>
-
-                <NavLink
-                  to="/register"
-                  className="px-4 py-2 bg-gray-100 text-gray-800 rounded-full hover:bg-gray-200"
-                >
-                  Register
-                </NavLink>
-              </>
-            ) : (
-              <button
-                onClick={handleLogout}
-                className="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 flex items-center gap-2"
-              >
-                <FaSignOutAlt /> Logout
-              </button>
+            {showMenu && (
+              <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-lg w-44">
+                <ul>
+                  <li>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2 hover:bg-teal-100"
+                    >
+                      <FaSignOutAlt className="inline mr-2" /> Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
             )}
           </div>
-        </nav>
-
-        {/* Page Content */}
-        <div
-          className="p-4 overflow-y-auto"
-          style={{ marginTop: `${navbarHeight}px` }}
-        ></div>
+        ) : (
+          <div className="flex gap-2">
+            <NavLink
+              to="/login"
+              className="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700"
+            >
+              Login
+            </NavLink>
+            <NavLink
+              to="/register"
+              className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+            >
+              Register
+            </NavLink>
+          </div>
+        )}
       </div>
-    </div>
+
+      {/* Mobile Hamburger */}
+      <div className="lg:hidden relative">
+        <button onClick={() => setShowMenu(!showMenu)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-gray-700"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        {showMenu && (
+          <ul className="absolute right-0 mt-2 bg-white shadow-lg rounded-lg w-52 flex flex-col gap-2 p-2">
+            {linkItems}
+            {user && (
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-left px-4 py-2 hover:bg-teal-100"
+                >
+                  <FaSignOutAlt className="inline mr-2" /> Logout
+                </button>
+              </li>
+            )}
+          </ul>
+        )}
+      </div>
+    </nav>
   );
 };
 
-export default Navber;
+export default Navbar;
