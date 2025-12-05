@@ -1,1 +1,1 @@
-live url===https://beautiful-starship-311530.netlify.app/service
+live url===https://beautiful-starship-311530.netlify.app
